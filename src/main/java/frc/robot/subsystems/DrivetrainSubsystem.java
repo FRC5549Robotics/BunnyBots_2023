@@ -35,6 +35,10 @@ import edu.wpi.first.math.geometry.Pose2d;
 
 import static frc.robot.Constants.*;
 
+import org.littletonrobotics.junction.Logger;
+import org.littletonrobotics.junction.inputs.LoggableInputs;
+import org.littletonrobotics.junction.AutoLog;
+
 public class DrivetrainSubsystem extends SubsystemBase {
   /**
    * T/''/he maximum voltage that will be delivered to the drive motors.
@@ -94,11 +98,15 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   SwerveDriveOdometry m_odometry;
   XboxController m_Controller;
+
+  //private final DriveIOInputsAutoLogged inputs = new DriveIOInputsAutoLogged();
+
   public DrivetrainSubsystem(XboxController xbox) {
     ShuffleboardTab tab = Shuffleboard.getTab("Drivetrain");
     m_Controller = xbox;
      
     // There are 4 methods you can call to create your swerve modules.
+
     // The method you use depends on what motors you are using.
     //
     // Mk3SwerveModuleHelper.createFalcon500(...)
@@ -270,6 +278,9 @@ public void lockModules() {
 
   @Override
   public void periodic() {
+
+        //Logger.getInstance().processInputs("Drive", inputs);
+
         SmartDashboard.putBoolean("Navx Connected?", getGyroConnected());
                 SwerveModuleState[] states = m_kinematics.toSwerveModuleStates(m_chassisSpeeds);
                 SwerveDriveKinematics.desaturateWheelSpeeds(states, MAX_VELOCITY_METERS_PER_SECOND);
