@@ -35,10 +35,6 @@ import edu.wpi.first.math.geometry.Pose2d;
 
 import static frc.robot.Constants.*;
 
-import org.littletonrobotics.junction.Logger;
-import org.littletonrobotics.junction.inputs.LoggableInputs;
-import org.littletonrobotics.junction.AutoLog;
-
 public class DrivetrainSubsystem extends SubsystemBase {
   /**
    * T/''/he maximum voltage that will be delivered to the drive motors.

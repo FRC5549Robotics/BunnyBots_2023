@@ -37,7 +37,6 @@ public class RobotContainer {
   private final XboxController m_controller2 = new XboxController(1);
   private final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem(m_controller);
   //private final PoseEstimator m_PoseEstimator = new PoseEstimator(m_Limelight, m_drivetrainSubsystem);
-  private AddressableLED led = new AddressableLED(0);
 
   public Indexer indexer = new Indexer(); 
 
