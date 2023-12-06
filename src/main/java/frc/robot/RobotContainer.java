@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.Indexer;
@@ -39,9 +40,15 @@ public class RobotContainer {
   //private final PoseEstimator m_PoseEstimator = new PoseEstimator(m_Limelight, m_drivetrainSubsystem);
 
   public Indexer indexer = new Indexer(); 
+  public Shintake shintake = new Shintake(); 
 
-  JoystickButton intakeButton = new JoystickButton(m_controller2, Constants.INDEXER_BUTTON);
+  JoystickButton indexInButton = new JoystickButton(m_controller2, Constants.INDEXER_BUTTON);
   JoystickButton resetNavXButton = new JoystickButton(m_controller, 4);
+  Trigger shootTrigger = new JoystickButton(m_controller2, Constants.SHOOT_TRIGGER);
+  JoystickButton intakeButton = new JoystickButton(m_controller2, Constants.INTAKE_BUTTON);
+  JoystickButton pnuematics = new JoystickButton(m_controller2, Constants.PNEUMATIC_BUTTON);
+  JoystickButton shootButton = new JoystickButton(m_controller2, Constants.SHOOT_BUTTON);
+  JoystickButton indexOutButton = new JoystickButton(m_controller2, Constants.INDEX_OUT);
 
   SendableChooser<Command> m_autoChooser = new SendableChooser<>();
 
@@ -82,11 +89,19 @@ public class RobotContainer {
   private void configureButtonBindings() {
     //shootButton.whenPressed(new SequentialCommandGroup(new TurnToAngle(limelight, drivetrain), 
     //new InstantCommand(shooter::runAtMax), new IndexerRunForSpecificTime(indexer, intake, 2), new InstantCommand(shooter::off)));
-    intakeButton.onTrue(new InstantCommand(indexer::indexer_run));
-    intakeButton.onFalse(new InstantCommand(indexer::indexer_stop));
+    indexInButton.onTrue(new InstantCommand(indexer::indexer_run));
+    indexInButton.onFalse(new InstantCommand(indexer::indexer_stop));
     resetNavXButton.onTrue(new InstantCommand(m_drivetrainSubsystem::zeroGyroscope));
-    
+    intakeButton.onTrue(new InstantCommand(shintake::shintake_back));
+    intakeButton.onFalse(new InstantCommand(shintake::shintake_stop));
+    pnuematics.onTrue(new InstantCommand(shintake::retract));
+    pnuematics.onFalse(new InstantCommand(shintake::extend));
+    shootButton.onTrue(new InstantCommand(shintake::shintake_run));
+    shootButton.onFalse(new InstantCommand(shintake::shintake_stop));
+    indexOutButton.onTrue(new InstantCommand(indexer::indexer_back));
+    indexOutButton.onFalse(new InstantCommand(indexer::indexer_stop));
   }
+
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

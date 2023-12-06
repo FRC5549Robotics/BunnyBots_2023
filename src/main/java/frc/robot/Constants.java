@@ -75,12 +75,16 @@ public final class Constants {
     public static final double kV = 0.18825;
     public static final double kA = 0.013596;
     public static final double tP = 1/27;
+    public static final int SHOOT_TRIGGER = 2;
+    public static final int INTAKE_BUTTON = 3;
+    public static final int SHOOT_BUTTON = 4;
+    public static final int INDEX_OUT = 1;
 
     //Shooter Solenoids
-    public static final int RIGHT_SHOOTER_SOLENOID_FORWARD = 1;
-    public static final int LEFT_SHOOTER_SOLENOID_FORWARD = 6;
-    public static final int RIGHT_SHOOTER_SOLENOID_REVERSE = 0;
-    public static final int LEFT_SHOOTER_SOLENOID_REVERSE = 7;
+    public static final int SHOOTER_SOLENOID_FORWARD = 6;
+    public static final int SHOOTER_SOLENOID_REVERSE = 7;
+    public static final int PNEUMATIC_BUTTON  = 4;
+
     //TBD
     public static final int SHINTAKE_SPEED = 1;
 }
