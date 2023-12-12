@@ -94,8 +94,8 @@ public class RobotContainer {
     resetNavXButton.onTrue(new InstantCommand(m_drivetrainSubsystem::zeroGyroscope));
     intakeButton.onTrue(new InstantCommand(shintake::shintake_back));
     intakeButton.onFalse(new InstantCommand(shintake::shintake_stop));
-    pnuematics.onTrue(new InstantCommand(shintake::retract));
-    pnuematics.onFalse(new InstantCommand(shintake::extend));
+    pnuematics.onFalse(new InstantCommand(shintake::retract));
+    pnuematics.onTrue(new InstantCommand(shintake::extend));
     shootButton.onTrue(new InstantCommand(shintake::shintake_run));
     shootButton.onFalse(new InstantCommand(shintake::shintake_stop));
     indexOutButton.onTrue(new InstantCommand(indexer::indexer_back));

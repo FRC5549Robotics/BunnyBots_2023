@@ -28,7 +28,7 @@ public class Shintake extends SubsystemBase {
     targetRPM = 111000;
     pcmCompressor = new Compressor(PneumaticsModuleType.CTREPCM);    
     pcmCompressor.enableDigital();
-    //pcmCompressor.disable();
+    pcmCompressor.disable(); //disables pneumadics
     shooterSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.SHOOTER_SOLENOID_FORWARD, Constants.SHOOTER_SOLENOID_REVERSE);
     boolean enabled = pcmCompressor.isEnabled();
     System.out.println(pcmCompressor.isEnabled());
@@ -43,11 +43,11 @@ public class Shintake extends SubsystemBase {
     shooterSolenoid.set(Value.kReverse);
   }
   public void shintake_run(){
-    motor_shintake.set(Constants.SHINTAKE_SPEED);
+    motor_shintake.set(-Constants.SHINTAKE_SPEED);
   }
 
   public void shintake_back(){
-    motor_shintake.set(-Constants.SHINTAKE_SPEED);
+    motor_shintake.set(Constants.SHINTAKE_SPEED);
   }
 
   public void shintake_stop(){

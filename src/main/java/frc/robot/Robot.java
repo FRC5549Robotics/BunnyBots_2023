@@ -7,14 +7,16 @@ package frc.robot;
 import edu.wpi.first.wpilibj.PneumaticsControlModule;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.TimedRobot;
-
+import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.cameraserver.*;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -40,6 +42,8 @@ public class Robot extends TimedRobot {
     pcm.clearAllStickyFaults();
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+    Ultrasonic m_rangeFinder = new Ultrasonic(Constants.ULTRASONIC_PING, Constants.ULTRASONIC_ECHO);
+    Shuffleboard.getTab("Sensors").add(m_rangeFinder);
     m_robotContainer = new RobotContainer();
   }
 
@@ -94,7 +98,8 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {
+  public void teleopPeriodic() {  
+
   }
   @Override
   public void testInit() {
