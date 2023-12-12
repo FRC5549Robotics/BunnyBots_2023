@@ -86,8 +86,8 @@ public final class Constants {
     public static final int PNEUMATIC_BUTTON  = 8;
 
     //ultrasonic ports
-    public static final int ULTRASONIC_PING = 0;
-    public static final int ULTRASONIC_ECHO = 1;
+    public static final int ULTRASONIC_PING = 1;
+    public static final int ULTRASONIC_ECHO = 0;
 
     //LED 
     public static final int LED_PORT = 1;

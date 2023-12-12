@@ -35,7 +35,7 @@ public class Robot extends TimedRobot {
   UsbCamera cam;
   NetworkTableEntry cameraNet;
   PneumaticsControlModule pcm = new PneumaticsControlModule();
-
+  
   @Override
   public void robotInit() {
   
@@ -110,27 +110,27 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {  
-    AddressableLED m_led = new AddressableLED(Constants.LED_PORT);
-    AddressableLEDBuffer m_ledBuffer = new AddressableLEDBuffer(10);
-    Ultrasonic m_rangeFinder = new Ultrasonic(Constants.ULTRASONIC_PING, Constants.ULTRASONIC_ECHO);
+  //   AddressableLED m_led = new AddressableLED(Constants.LED_PORT);
+  //   AddressableLEDBuffer m_ledBuffer = new AddressableLEDBuffer(10);
+  //   Ultrasonic m_rangeFinder = new Ultrasonic(Constants.ULTRASONIC_PING, Constants.ULTRASONIC_ECHO);
 
-    if(m_rangeFinder.getRangeInches() < 24){
-      for(int i=0; i < m_ledBuffer.getLength(); i++){
-        m_ledBuffer.setRGB(i, 255, 0, 0);
-      }
-    }
+  //   if(m_rangeFinder.getRangeInches() < 24){
+  //     for(int i=0; i < m_ledBuffer.getLength(); i++){
+  //       m_ledBuffer.setRGB(i, 255, 0, 0);
+  //     }
+  //   }
 
-    if(m_rangeFinder.getRangeInches() > 48){
-      for(int i=0; i < m_ledBuffer.getLength(); i++){
-        m_ledBuffer.setRGB(i, 255, 0, 255);
-      }  
-    }
-    if(m_rangeFinder.getRangeInches() > 24 && m_rangeFinder.getRangeInches() < 48){
-      for(int i=0; i < m_ledBuffer.getLength(); i++){
-        m_ledBuffer.setRGB(i, 0, 255, 0);
-      }
-    }
-   m_led.setData(m_ledBuffer);
+  //   if(m_rangeFinder.getRangeInches() > 48){
+  //     for(int i=0; i < m_ledBuffer.getLength(); i++){
+  //       m_ledBuffer.setRGB(i, 255, 0, 255);
+  //     }  
+  //   }
+  //   if(m_rangeFinder.getRangeInches() > 24 && m_rangeFinder.getRangeInches() < 48){
+  //     for(int i=0; i < m_ledBuffer.getLength(); i++){
+  //       m_ledBuffer.setRGB(i, 0, 255, 0);
+  //     }
+  //   }
+  //  m_led.setData(m_ledBuffer);
   }
   @Override
   public void testInit() {
