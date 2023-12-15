@@ -64,7 +64,7 @@ public final class Constants {
     public static final int INDEXER_MOTOR = 20;
     //TBD
     public static final int INDEXER_SPEED = 1;
-    public static final int INDEXER_BUTTON = 1;
+    public static final int INDEXER_BUTTON = 2;
 
     //Shintake
     public static final int SHINTAKE_MOTOR = 21;
@@ -83,8 +83,14 @@ public final class Constants {
     //Shooter Solenoids
     public static final int SHOOTER_SOLENOID_FORWARD = 6;
     public static final int SHOOTER_SOLENOID_REVERSE = 7;
-    public static final int PNEUMATIC_BUTTON  = 4;
+    public static final int PNEUMATIC_BUTTON  = 8;
 
+    //ultrasonic ports
+    public static final int ULTRASONIC_PING = 1;
+    public static final int ULTRASONIC_ECHO = 0;
+
+    //LED 
+    public static final int LED_PORT = 1;
     //TBD
-    public static final int SHINTAKE_SPEED = 1;
+    public static final double SHINTAKE_SPEED = 0.75;
 }

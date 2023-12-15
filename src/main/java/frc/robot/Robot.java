@@ -4,17 +4,21 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.AddressableLED;
+import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.PneumaticsControlModule;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.TimedRobot;
-
+import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.cameraserver.*;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -31,7 +35,7 @@ public class Robot extends TimedRobot {
   UsbCamera cam;
   NetworkTableEntry cameraNet;
   PneumaticsControlModule pcm = new PneumaticsControlModule();
-
+  
   @Override
   public void robotInit() {
   
@@ -40,7 +44,18 @@ public class Robot extends TimedRobot {
     pcm.clearAllStickyFaults();
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+    Ultrasonic m_rangeFinder = new Ultrasonic(Constants.ULTRASONIC_PING, Constants.ULTRASONIC_ECHO);
+    Shuffleboard.getTab("Sensors").add(m_rangeFinder);
     m_robotContainer = new RobotContainer();
+    AddressableLED m_led = new AddressableLED(Constants.LED_PORT);
+    AddressableLEDBuffer m_ledBuffer = new AddressableLEDBuffer(10);
+    m_led.setLength(m_ledBuffer.getLength());
+    m_led.setData(m_ledBuffer);
+    m_led.start();
+    for(int i=0; i < m_ledBuffer.getLength(); i++){
+      m_ledBuffer.setRGB(i, 255, 255, 255);
+    }
+   m_led.setData(m_ledBuffer);
   }
 
   /**
@@ -94,7 +109,28 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {
+  public void teleopPeriodic() {  
+  //   AddressableLED m_led = new AddressableLED(Constants.LED_PORT);
+  //   AddressableLEDBuffer m_ledBuffer = new AddressableLEDBuffer(10);
+  //   Ultrasonic m_rangeFinder = new Ultrasonic(Constants.ULTRASONIC_PING, Constants.ULTRASONIC_ECHO);
+
+  //   if(m_rangeFinder.getRangeInches() < 24){
+  //     for(int i=0; i < m_ledBuffer.getLength(); i++){
+  //       m_ledBuffer.setRGB(i, 255, 0, 0);
+  //     }
+  //   }
+
+  //   if(m_rangeFinder.getRangeInches() > 48){
+  //     for(int i=0; i < m_ledBuffer.getLength(); i++){
+  //       m_ledBuffer.setRGB(i, 255, 0, 255);
+  //     }  
+  //   }
+  //   if(m_rangeFinder.getRangeInches() > 24 && m_rangeFinder.getRangeInches() < 48){
+  //     for(int i=0; i < m_ledBuffer.getLength(); i++){
+  //       m_ledBuffer.setRGB(i, 0, 255, 0);
+  //     }
+  //   }
+  //  m_led.setData(m_ledBuffer);
   }
   @Override
   public void testInit() {
