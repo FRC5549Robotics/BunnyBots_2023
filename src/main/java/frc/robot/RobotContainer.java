@@ -52,7 +52,7 @@ public class RobotContainer {
 
   SendableChooser<Command> m_autoChooser = new SendableChooser<>();
 
-  /**pi
+  /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
@@ -67,6 +67,7 @@ public class RobotContainer {
             () -> -modifyAxis(m_controller.getLeftX()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
             () -> -modifyAxis(m_controller.getRightX()) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
     ));
+    
     Constants.INITIAL_HEADING = m_drivetrainSubsystem.GetInitialHeading();
     SmartDashboard.putNumber("Initial Yaw", Constants.INITIAL_HEADING);
     // Configure the button bindings

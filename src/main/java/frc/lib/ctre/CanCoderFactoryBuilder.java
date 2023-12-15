@@ -26,7 +26,7 @@ public class CanCoderFactoryBuilder {
         return configuration -> {
             CANCoderConfiguration config = new CANCoderConfiguration();
             config.absoluteSensorRange = AbsoluteSensorRange.Unsigned_0_to_360;
-            config.magnetOffsetDegrees = Math.toDegrees(configuration.getOffset());
+            //config.magnetOffsetDegrees = Math.toDegrees(configuration.getOffset());
             config.sensorDirection = direction == Direction.CLOCKWISE;
             config.initializationStrategy = configuration.getInitStrategy();
 

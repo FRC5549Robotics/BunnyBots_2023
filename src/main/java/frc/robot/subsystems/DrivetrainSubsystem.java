@@ -141,7 +141,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     .withDriveMotor(MotorType.NEO, Constants.FRONT_RIGHT_MODULE_DRIVE_MOTOR)
     .withSteerMotor(MotorType.NEO, Constants.FRONT_RIGHT_MODULE_STEER_MOTOR)
     .withSteerEncoderPort(Constants.FRONT_RIGHT_MODULE_STEER_ENCODER)
-    .withSteerOffset(Constants.FRONT_RIGHT_MODULE_STEER_OFFSET)
+    .withSteerOffset(Constants.FRONT_RIGHT_MODULE_STEER_OFFSET) 
     .build();
 
     m_backLeftModule = new MkSwerveModuleBuilder()

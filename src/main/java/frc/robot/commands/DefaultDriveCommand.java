@@ -14,7 +14,7 @@ public class DefaultDriveCommand extends CommandBase {
     private final DoubleSupplier m_translationXSupplier;
     private final DoubleSupplier m_translationYSupplier;
     private final DoubleSupplier m_rotationSupplier;
-    private final SlewRateLimiter filterx, filtery;
+    private final SlewRateLimiter filterx, filtery, filtertheta;
 
     public DefaultDriveCommand(DrivetrainSubsystem drivetrainSubsystem,
                                DoubleSupplier translationXSupplier,
@@ -24,8 +24,9 @@ public class DefaultDriveCommand extends CommandBase {
         this.m_translationXSupplier = translationXSupplier;
         this.m_translationYSupplier = translationYSupplier;
         this.m_rotationSupplier = rotationSupplier;
-        this.filterx = new SlewRateLimiter(2.5);
-        this.filtery = new SlewRateLimiter(2.5);
+        this.filterx = new SlewRateLimiter(10);
+        this.filtery = new SlewRateLimiter(10);
+        this.filtertheta = new SlewRateLimiter(10);
 
         addRequirements(drivetrainSubsystem);
     }
@@ -37,7 +38,7 @@ public class DefaultDriveCommand extends CommandBase {
                 ChassisSpeeds.fromFieldRelativeSpeeds(
                         filterx.calculate(m_translationXSupplier.getAsDouble()),
                         filtery.calculate(m_translationYSupplier.getAsDouble()),
-                        m_rotationSupplier.getAsDouble(),
+                        filtertheta.calculate(m_rotationSupplier.getAsDouble()),
                         m_drivetrainSubsystem.getGyroscopeRotation()
                 )
         );
